@@ -1,3 +1,9 @@
+import { MarkdownEditor } from "@/components/markdown-editor";
+
 export default function TryOut() {
-  return <div>Tryout page</div>;
+  return (
+    <div>
+      <MarkdownEditor />
+    </div>
+  );
 }
