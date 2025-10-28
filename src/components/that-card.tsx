@@ -17,6 +17,8 @@ type ThatCardProps = {
   href: string;
 };
 
+const arrow = "&arr;";
+
 export function ThatCard({
   author,
   date,
@@ -44,7 +46,7 @@ export function ThatCard({
           rel="oreferrer noreferrer"
           target="_blank"
         >
-          Read article &arr;
+          Read article →{/* <span>&arr;</span> doesn't work */}
         </Link>
       </CardFooter>
     </Card>
