@@ -6,4 +6,6 @@ construction-in-progress
 
 After you get neon env variables
 
-`npx @stackframe/init-stack@latest --no-browser`
+```bash
+npx @stackframe/init-stack@latest --no-browser
+```
