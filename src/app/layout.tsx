@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+
+import { NavBar } from "@/components/nav/nav-bar";
+
+import { stackServerApp } from "@/stack/server";
+// import { stackClientApp } from "@/stack/client";
+
 import "./globals.css";
 
 //
-import { NavBar } from "@/components/nav/nav-bar";
 //
 
 const geistSans = Geist({
@@ -31,8 +37,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBar />
-        {children}
+        <StackProvider
+          app={stackServerApp}
+          // in workshop they used stackClientApp (needt to learn more about this, I assume it is client component)
+          // app={stackClientApp}
+        >
+          <NavBar />
+          <StackTheme>{children}</StackTheme>
+        </StackProvider>
       </body>
     </html>
   );
