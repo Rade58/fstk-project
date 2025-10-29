@@ -1,4 +1,5 @@
 import { dirname } from "node:path";
+import { URL } from "node:url";
 
 import type { NextConfig } from "next";
 
@@ -12,6 +13,13 @@ const nextConfig: NextConfig = {
     root: dirname(__filename),
   },
   // ------------------------------------------------------
+
+  images: {
+    remotePatterns: [
+      new URL("https://picsum.photos/**"),
+      new URL("https://fastly.picsum.photos/**"),
+    ],
+  },
 };
 
 export default nextConfig;

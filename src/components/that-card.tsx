@@ -17,7 +17,7 @@ type ThatCardProps = {
   href: string;
 };
 
-const arrow = "&arr;";
+// const arrow = "&arr;";
 
 export function ThatCard({
   author,

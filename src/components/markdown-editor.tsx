@@ -39,6 +39,8 @@ export function MarkdownEditor({
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  console.log({ content });
+
   async function handleSubmit(ev: React.FormEvent) {
     // console.log("handle submit");
     ev.preventDefault();
