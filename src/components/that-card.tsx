@@ -43,8 +43,8 @@ export function ThatCard({
         <Link
           className="text-cyan-600 hover:underline text-sm font-medium w-fit"
           href={href}
-          rel="oreferrer noreferrer"
-          target="_blank"
+          // rel="oreferrer noreferrer"
+          // target="_blank"
         >
           Read article →{/* <span>&arr;</span> doesn't work */}
         </Link>

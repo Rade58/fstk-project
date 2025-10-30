@@ -1,11 +1,25 @@
 // import Image from "next/image";
 import { ThatCard } from "@/components/that-card";
+import { getArticles } from "@/lib/data/articles";
 
-export default function Home() {
+export default async function Home() {
+  const articles = await getArticles();
+
   return (
     <div>
       <main className="max-w-2xl mx-auto mt-10 flex flex-col gap-6">
-        <ThatCard
+        {articles.map(({ author, content, createdAt, id, title, imageUrl }) => (
+          <ThatCard
+            key={id}
+            title={title}
+            author={author}
+            date={createdAt}
+            summary={content.substring(0, 200)} // this will be changed, because markdown string is just being rendered as text
+            href={`/garden/${id}`}
+          />
+        ))}
+
+        {/*  <ThatCard
           title="Complete Intro to doing things"
           author="Jordan Jhonson"
           date="Aug 2025"
@@ -32,7 +46,7 @@ export default function Home() {
           date="Aug 2025"
           summary="Quisque commodo, est sit amet tincidunt venenatis, magna velit convallis odio, vel varius eros leo a massa. Sed vulputate neque sed nibh ultricies, et cursus lectus condimentum. Suspendisse in ornare orci. Phasellus in orci et diam semper congue sit amet non tortor. Vivamus ultrices dui at fermentum accumsan. In ac porttitor risus, nec laoreet turpis."
           href="https://github.com/Rade58"
-        />
+        /> */}
       </main>
     </div>
   );

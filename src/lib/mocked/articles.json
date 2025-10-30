@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "title": "The Art of Procrastination",
+    "content": "# Mastering Procrastination\n\nProcrastination isn't a flaw - it's an art form. Here's how to perfect it.\n\n## Advanced Techniques\n- **The Last Minute Sprint**: Wait until 2 hours before deadline\n- **Creative Avoidance**: Suddenly discover a passion for cleaning\n- **Research Rabbit Hole**: Spend 6 hours researching how to research\n\n*Remember: Why do today what you can put off until tomorrow?*",
+    "author": "Professor McDelay",
+    "createdAt": "2024-01-18T11:20:00Z",
+    "imageUrl": "https://picsum.photos/200/300"
+  },
+  {
+    "id": "2",
+    "title": "Coffee: The Student's Fuel",
+    "content": "# Caffeine Chronicles\n\nUnderstanding the different types of coffee and their academic applications.\n\n## Coffee Types & Uses\n- **Espresso**: For all-nighters\n- **Latte**: For pretending you're sophisticated\n- **Cold Brew**: For when you overslept\n- **Decaf**: For impostors\n\nPro tip: If you can't solve a problem, add more coffee.",
+    "author": "Brew Master Beans",
+    "createdAt": "2024-01-19T08:45:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Surviving Group Projects",
+    "content": "# Group Project Survival Guide\n\nHow to navigate the treacherous waters of academic collaboration.\n\n## Team Member Archetypes\n- **The Ghost**: Vanishes after first meeting\n- **The Control Freak**: Does everything then complains\n- **The Last Minute Hero**: Saves the day (and your grade)\n- **The Idea Person**: Has great ideas... for others to execute\n\n```javascript\n// How group projects actually work\nconst doAllTheWork = () => {\n  while(deadlineApproaching) {\n    panic();\n    drinkCoffee();\n    actuallyWork();\n  }\n};\n```",
+    "author": "Captain Collaboration",
+    "createdAt": "2024-01-20T16:15:00Z",
+    "imageUrl": "https://picsum.photos/200/300"
+  },
+  {
+    "id": "4",
+    "title": "The Magic of All-Nighters",
+    "content": "# All-Nighter Alchemy\n\nTransforming panic into productivity through the ancient art of sleep deprivation.\n\n## The 5 Stages\n1. **Optimism**: \"I'll finish by midnight!\"\n2. **Regret**: \"Why didn't I start earlier?\"\n3. **Desperation**: \"Coffee isn't working anymore\"\n4. **Hallucinations**: \"The code is speaking to me\"\n5. **Triumph**: \"It's done... I think\"\n\nWarning: May cause temporary insanity and permanent caffeine addiction.",
+    "author": "Sir Sleepless",
+    "createdAt": "2024-01-21T03:30:00Z"
+  },
+  {
+    "id": "5",
+    "title": "Lecture Hall Etiquette",
+    "content": "# Classroom Conduct\n\nUnwritten rules for surviving lectures without becoming \"that person.\"\n\n## Don't Be That Person\n- The Loud Snacker (chip bags at 8 AM)\n- The Question Asker (\"Will this be on the test?\")\n- The Phone Checker (every 30 seconds)\n- The Late Comer (with squeaky shoes)\n- The Early Leaver (loudly packing up)\n\nRemember: We're all just trying to survive until the next break.",
+    "author": "Ms. Manners",
+    "createdAt": "2024-01-22T13:10:00Z",
+    "imageUrl": "https://picsum.photos/200/300"
+  },
+  {
+    "id": "6",
+    "title": "Textbook Economics",
+    "content": "# The Great Textbook Scam\n\nWhy do textbooks cost more than your first car? Let's investigate.\n\n## Textbook Lifecycle\n1. Professor requires $300 book\n2. You buy it, eat ramen for month\n3. Use book exactly twice\n4. Try to sell back for $15\n5. Campus store: \"New edition coming\"\n6. Repeat\n\nAlternative: Become friends with someone who bought it last semester.",
+    "author": "Budget McFrugal",
+    "createdAt": "2024-01-23T10:05:00Z"
+  },
+  {
+    "id": "7",
+    "title": "Dorm Room Cooking",
+    "content": "# Microwave Masterpieces\n\nGourmet meals using only a microwave, questionable ingredients, and sheer willpower.\n\n## 5-Star Dorm Recipes\n- **Ramen Remix**: Add an egg (if you're fancy)\n- **Microwave \"Baked\" Potato**: For when you feel healthy\n- **Coffee Cup Omelette**: Because why not?\n- **Cereal Dinner**: The classic \"I give up\" meal\n\n```python\n# Advanced cooking algorithm\ndef cook_dorm_meal(ingredients):\n    if 'microwave' in ingredients:\n        return 'edible'\n    else:\n        return 'hungry'\n```",
+    "author": "Chef Microwave",
+    "createdAt": "2024-01-24T18:30:00Z",
+    "imageUrl": "https://picsum.photos/200/300"
+  },
+  {
+    "id": "8",
+    "title": "The Syllabus Myth",
+    "content": "# Syllabus: Fiction or Reality?\n\nDo professors actually follow their own syllabi? A critical investigation.\n\n## Common Syllabus Lies\n- \"This is a tentative schedule\" (it's not)\n- \"No surprises on exams\" (everything is a surprise)\n- \"I'm available anytime\" (if you can find them)\n- \"This won't be graded harshly\" (it will be)\n\nPro tip: Read the syllabus, then prepare for it to be completely irrelevant.",
+    "author": "Detective Syllabus",
+    "createdAt": "2024-01-25T14:20:00Z"
+  },
+  {
+    "id": "9",
+    "title": "Laundry Day Strategies",
+    "content": "# Laundry Warfare\n\nNavigating the battlefield of dorm laundry rooms with tactical precision.\n\n## Laundry Room Etiquette\n- Don't leave clothes for 3+ hours\n- Actually clean the lint filter\n- No, you can't \"reserve\" a machine with a single sock\n- The 10-minute grace period is a myth\n- If you see an empty dryer, it's probably broken\n\nRemember: The sweet smell of clean clothes is worth the emotional trauma.",
+    "author": "General Cleanliness",
+    "createdAt": "2024-01-26T12:45:00Z",
+    "imageUrl": "https://picsum.photos/200/300"
+  },
+  {
+    "id": "10",
+    "title": "Final Exam Psychology",
+    "content": "# Exam Season Mental Health\n\nMaintaining sanity when every professor thinks their final is the only one that matters.\n\n## Survival Tactics\n- **The Study Group**: Where you mostly complain about studying\n- **The Caffeine Overdose**: When coffee becomes a food group\n- **The Bargaining Phase**: \"If I pass, I'll never procrastinate again\"\n- **The Acceptance**: \"C's get degrees\"\n\nFinal thought: This too shall pass (unlike some of your classes).",
+    "author": "Dr. Brainfreeze",
+    "createdAt": "2024-01-27T09:00:00Z"
+  }
+]

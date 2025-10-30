@@ -4,7 +4,7 @@ import { randomBytes } from "node:crypto";
 import {
   sample_image,
   markdownSampleContent,
-} from "@/components/markdown_sample";
+} from "@/lib/mocked/markdown_sample";
 
 export default function TryOut() {
   return (
