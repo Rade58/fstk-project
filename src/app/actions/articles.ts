@@ -42,6 +42,7 @@ export async function createArticle(data: CreateArticleInput) {
     slug: "" + Date.now(),
     published: true,
     authorId: user.id,
+    imageUrl: data.imageUrl,
   });
 
   return { success: true, message: "Article create logged (stub)" };
@@ -68,7 +69,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
 
   const response = await db
     .update(articles)
-    .set({ title: data.title, content: data.content })
+    .set({ title: data.title, content: data.content, imageUrl: data.imageUrl })
     .where(eq(articles.id, +id));
 
   return { success: true, message: `Article id: ${id} update logged (stub)` };

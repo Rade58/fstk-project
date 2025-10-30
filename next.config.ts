@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       new URL("https://picsum.photos/**"),
       new URL("https://fastly.picsum.photos/**"),
+      //
+      new URL("https://ntndn1nklaxpbeo0.public.blob.vercel-storage.com/**"),
     ],
     // this is aparently deprecated in favor of remotePatterns
     // but it doesn't wotk without it for some reason

@@ -12,6 +12,7 @@ import { createArticle, updateArticle } from "@/app/actions/articles";
 
 import { stackClientApp } from "@/stack/client";
 import { useRouter } from "next/navigation";
+import { uploadFile } from "@/app/actions/upload";
 
 type EditorProps = {
   initialTitle?: string;
@@ -20,11 +21,11 @@ type EditorProps = {
   articleId?: string;
 };
 
-type FormData = {
+/* type FormData = {
   title: string;
   content: string;
   files: File[];
-};
+}; */
 
 type FormErrors = {
   title?: string;
@@ -64,17 +65,33 @@ export function MarkdownEditor({
         throw new Error("Unauthorized");
       }
 
+      let imageUrl: string | undefined;
+
+      if (files.length > 0) {
+        const fd = new FormData();
+        fd.append("files", files[0]);
+        const uploaded = await uploadFile(fd);
+        console.log({ uploaded });
+        imageUrl = uploaded.url;
+      }
+
+      console.log({ imageUrl });
+
       const payload = {
         title: title.trim(),
         content: content.trim(),
         authorId: user.id,
-        // imageUrl
+        //
+        imageUrl,
       };
+
+      console.log({ payload, isEditing, articleId });
 
       if (isEditing && articleId) {
         await updateArticle(articleId, {
           title: payload.title,
           content: payload.content,
+          imageUrl: payload.imageUrl,
         });
         router.push(`/garden/${articleId}`);
       } else {

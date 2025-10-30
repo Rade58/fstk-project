@@ -1,6 +1,10 @@
 "use server";
 
+import { put } from "@vercel/blob";
+
 import { stackServerApp } from "@/stack/server";
+
+// import {authorizeUserToEditArticle} from "@/db/authz"
 
 // Server action to handle uploads (stub)
 
@@ -49,11 +53,30 @@ export async function uploadFile(formData: FormData): Promise<UploadedFile> {
   // Cloudinary upload code
   // Example: upload using Cloudinary SDK on the server and return secure_url
 
+  console.log({ file });
+
+  try {
+    const blob = await put(file.name, file, {
+      access: "public",
+      addRandomSuffix: true,
+    });
+
+    return {
+      url: blob.url ?? "",
+      size: file.size,
+      type: file.type,
+      filename: blob.pathname ?? file.name,
+    };
+  } catch (err) {
+    console.log("Vercel blob upload error ", err);
+    throw new Error("Upload failed!");
+  }
+
   // Placeholder response
-  return {
-    url: "/uploads/mock-image.jpg",
-    size: file.size,
-    type: file.type,
-    filename: file.name,
-  };
+  // return {
+  //   url: "/uploads/mock-image.jpg",
+  //   size: file.size,
+  //   type: file.type,
+  //   filename: file.name,
+  // };
 }
