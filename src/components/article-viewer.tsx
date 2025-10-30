@@ -8,7 +8,9 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
-type Article = {
+import type { ArticleJoinedUser } from "@/lib/data/articles";
+
+/* type Article = {
   id: string;
   title: string;
   content: string;
@@ -16,9 +18,9 @@ type Article = {
   createdAt: string;
   imageUrl?: string;
 };
-
+ */
 type ArticleViewerProps = {
-  article: Article;
+  article: ArticleJoinedUser;
   canEdit?: boolean;
 };
 
@@ -35,6 +37,8 @@ export function ArticleViewer({
       day: "numeric",
     });
   }
+
+  console.log({ article });
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -59,6 +63,7 @@ export function ArticleViewer({
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center">
               <User2 className="h-4 w-4 mr-1" />
+              {/* didn't do the join */}
               <span>By {article.author}</span>
             </div>
             <div className="flex items-center">

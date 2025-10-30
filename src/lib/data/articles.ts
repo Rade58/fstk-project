@@ -1,6 +1,7 @@
 // import mocked_articles from "@/lib/mocked/articles.json"; // mocked json articles
 import db from "@/db";
 import { articles } from "@/db/schema";
+import { image } from "@uiw/react-md-editor";
 import { eq } from "drizzle-orm";
 import { usersSync } from "drizzle-orm/neon";
 
@@ -33,6 +34,7 @@ export async function getArticleById(id: number) {
       createdAt: articles.createdAt,
       content: articles.content,
       author: usersSync.name,
+      imageUrl: articles.imageUrl,
     })
     .from(articles)
     .where(eq(articles.id, id))
@@ -40,3 +42,8 @@ export async function getArticleById(id: number) {
 
   return response[0] ? response[0] : null;
 }
+
+export type ArticleJoinedUser = Exclude<
+  Awaited<ReturnType<typeof getArticleById>>,
+  null
+>;

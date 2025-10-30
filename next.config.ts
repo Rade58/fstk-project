@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
       new URL("https://picsum.photos/**"),
       new URL("https://fastly.picsum.photos/**"),
     ],
+    // this is aparently deprecated in favor of remotePatterns
+    // but it doesn't wotk without it for some reason
+    domains: ["picsum.photos"],
   },
 };
 

@@ -66,7 +66,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
   // TODO: Replace with actual datbase update
   // console.log("updateArticle called ", { id, ...data });
 
-  const response = db
+  const response = await db
     .update(articles)
     .set({ title: data.title, content: data.content })
     .where(eq(articles.id, +id));

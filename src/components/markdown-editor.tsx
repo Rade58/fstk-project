@@ -3,11 +3,15 @@
 import type React from "react";
 import { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
-import { UploadCloud, CircleX, XCircle } from "lucide-react";
+import { UploadCloud, XCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { createArticle, updateArticle } from "@/app/actions/articles";
+
+import { stackClientApp } from "@/stack/client";
+import { useRouter } from "next/navigation";
 
 type EditorProps = {
   initialTitle?: string;
@@ -33,13 +37,17 @@ export function MarkdownEditor({
   isEditing = false,
   articleId,
 }: EditorProps) {
+  const user = stackClientApp.useUser();
+
+  const router = useRouter();
+
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [files, setFiles] = useState<File[]>([]);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  console.log({ content });
+  // console.log({ content });
 
   async function handleSubmit(ev: React.FormEvent) {
     // console.log("handle submit");
@@ -51,29 +59,60 @@ export function MarkdownEditor({
 
     setIsSubmitting(true);
 
-    const formData: FormData = {
-      title: title.trim(),
-      content: content.trim(),
-      files,
-    };
+    try {
+      if (!user) {
+        throw new Error("Unauthorized");
+      }
 
-    // logging data (here you would call api but we are logging for now)
-    console.log("Form submitted: ", {
-      action: isEditing ? "edit" : "create",
-      articleId: isEditing ? articleId : undefined,
-      data: formData,
-    });
-    // simulating lattency, a delayed api call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      const payload = {
+        title: title.trim(),
+        content: content.trim(),
+        authorId: user.id,
+        // imageUrl
+      };
 
-    setIsSubmitting(false);
+      if (isEditing && articleId) {
+        await updateArticle(articleId, {
+          title: payload.title,
+          content: payload.content,
+        });
+        router.push(`/garden/${articleId}`);
+      } else {
+        await createArticle(payload);
+        router.push(`/garden/${articleId}`);
+      }
 
-    // in real world example you would navigate after successful submission
-    alert(
-      `Article ${isEditing ? "updated" : "created"} 
-       successfully! Check console for form data. 
-      `,
-    );
+      // const formData: FormData = {
+      //   title: title.trim(),
+      //   content: content.trim(),
+      //   files,
+      // };
+
+      // logging data (here you would call api but we are logging for now)
+      /* console.log("Form submitted: ", {
+        action: isEditing ? "edit" : "create",
+        articleId: isEditing ? articleId : undefined,
+        // data: formData,
+        data: { payload },
+      }); */
+
+      // simulating lattency, a delayed api call
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // setIsSubmitting(false);
+
+      // in real world example you would navigate after successful submission
+      // alert(
+      //   `Article ${isEditing ? "updated" : "created"}
+      //   successfully! Check console for form data.
+      //   `,
+      // );
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+      alert("There was an error submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handleUpload(ev: React.ChangeEvent<HTMLInputElement>) {
