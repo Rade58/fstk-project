@@ -7,6 +7,9 @@ import { articles } from "@/db/schema";
 
 import { stackServerApp } from "@/stack/server";
 
+//
+import { authorizeUserToEditArticle } from "@/db/authz";
+
 // Server action to handle uploads (stub)
 
 // TODO: replace placeholder with real database operations when ready
@@ -51,6 +54,15 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
     throw new Error("Unauthorized!");
   }
 
+  // we will write all of this inline in delete function, just to show you
+  // that you can do it
+  const authorized = await authorizeUserToEditArticle(user.id, +id);
+
+  if (!authorized) {
+    throw new Error("Forbidden!");
+  }
+  //
+
   // TODO: Replace with actual datbase update
   // console.log("updateArticle called ", { id, ...data });
 
@@ -67,6 +79,11 @@ export async function deleteArticle(id: string) {
 
   if (!user) {
     throw new Error("Unauthorized!");
+  }
+
+  // see this, refactored unlike in update function
+  if (!(await authorizeUserToEditArticle(user.id, +id))) {
+    throw new Error("Forbidden!");
   }
 
   // TODO: Replace with actual datbase delete
