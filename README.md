@@ -1,6 +1,6 @@
 # Full stack app with nextjs
 
-construction-in-progress
+completed
 
 ## Auth (using neon auth)
 
