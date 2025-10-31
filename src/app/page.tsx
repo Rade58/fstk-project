@@ -8,16 +8,20 @@ export default async function Home() {
   return (
     <div>
       <main className="max-w-2xl mx-auto mt-10 flex flex-col gap-6">
-        {articles.map(({ author, content, createdAt, id, title, imageUrl }) => (
-          <ThatCard
-            key={id}
-            title={title}
-            author={author}
-            date={createdAt}
-            summary={content.substring(0, 200)} // this will be changed, because markdown string is just being rendered as text
-            href={`/garden/${id}`}
-          />
-        ))}
+        {/* @ts-ignore map exists (introducing rdis made this problem) */}
+        {articles.map(
+          // @ts-ignore because we are sending cached data from redis which is not typed but it the right data whicj originateds from postgres
+          ({ author, content, createdAt, id, title /* , imageUrl */ }) => (
+            <ThatCard
+              key={id}
+              title={title}
+              author={author}
+              date={createdAt}
+              summary={content.substring(0, 200)} // this will be changed, because markdown string is just being rendered as text
+              href={`/garden/${id}`}
+            />
+          ),
+        )}
 
         {/*  <ThatCard
           title="Complete Intro to doing things"
