@@ -10,6 +10,8 @@ import { stackServerApp } from "@/stack/server";
 //
 import { authorizeUserToEditArticle } from "@/db/authz";
 
+import { summerizeArticle } from "@/ai/summarize";
+
 import redis from "@/cache"; // to clear redis db at the end of article creation
 // because when we get all articles on the main page we are also
 // serving articles from redis and we ned to make sure
@@ -38,8 +40,7 @@ export async function createArticle(data: CreateArticleInput) {
     throw new Error("Unauthorized!");
   }
 
-  // TODO: Replace with actual datbase call
-  // console.log("createArticle called ", data);
+  const summary = await summerizeArticle(data.title || "", data.content || "");
 
   const response = await db.insert(articles).values({
     title: data.title,
@@ -48,6 +49,8 @@ export async function createArticle(data: CreateArticleInput) {
     published: true,
     authorId: user.id,
     imageUrl: data.imageUrl ?? undefined,
+    //
+    summary,
   });
 
   redis.del("articles:all");
@@ -71,8 +74,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
   }
   //
 
-  // TODO: Replace with actual datbase update
-  // console.log("updateArticle called ", { id, ...data });
+  const summary = await summerizeArticle(data.title || "", data.content || "");
 
   const response = await db
     .update(articles)
@@ -80,6 +82,7 @@ export async function updateArticle(id: string, data: UpdateArticleInput) {
       title: data.title,
       content: data.content,
       imageUrl: data.imageUrl ?? undefined,
+      summary,
     })
     .where(eq(articles.id, +id));
 

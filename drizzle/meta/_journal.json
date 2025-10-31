@@ -8,6 +8,13 @@
       "when": 1761835375139,
       "tag": "0000_superb_shard",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1761935236810,
+      "tag": "0001_yielding_vance_astro",
+      "breakpoints": true
     }
   ]
 }

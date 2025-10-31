@@ -24,6 +24,7 @@ export async function getArticles() {
       createdAt: articles.createdAt,
       content: articles.content,
       author: usersSync.name,
+      summary: articles.summary,
     })
     .from(articles)
     .leftJoin(usersSync, eq(articles.authorId, usersSync.id));
@@ -51,6 +52,7 @@ export async function getArticleById(id: number) {
       content: articles.content,
       author: usersSync.name,
       imageUrl: articles.imageUrl,
+      // summary: articles.summary, don't need summary from ai on the single article page
     })
     .from(articles)
     .where(eq(articles.id, id))

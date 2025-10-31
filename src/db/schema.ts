@@ -7,6 +7,9 @@ export const articles = pgTable("articles", {
   slug: text("slug").notNull().unique(),
   content: text("content").notNull(),
   imageUrl: text("imageUrl"),
+  // content from ai
+  summary: text("summary"),
+  //
   published: boolean("published").default(false).notNull(),
   authorId: text("author_id")
     .notNull()
