@@ -1,11 +1,19 @@
 // import mocked_articles from "@/lib/mocked/articles.json"; // mocked json articles
-import db from "@/db";
-import { articles } from "@/db/schema";
-import { image } from "@uiw/react-md-editor";
 import { eq } from "drizzle-orm";
 import { usersSync } from "drizzle-orm/neon";
+import db from "@/db";
+import { articles } from "@/db/schema";
+import redis from "@/cache";
 
 export async function getArticles() {
+  // redis stuff
+  const cached = await redis.get("articles:all");
+
+  if (cached) {
+    console.log("Get articles cache hit");
+    return cached;
+  }
+
   // replace these ones with actual from datbase
   // return mocked_articles;
 
@@ -19,6 +27,14 @@ export async function getArticles() {
     })
     .from(articles)
     .leftJoin(usersSync, eq(articles.authorId, usersSync.id));
+
+  // redis stuff
+  console.log("Get articles cache miss!");
+
+  redis.set("articles:all", response, {
+    ex: 60, // one minute
+  });
+  //
 
   return response;
 }

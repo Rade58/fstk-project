@@ -3,12 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { Calendar1, ChevronRight, Edit2, Home, User2 } from "lucide-react";
+import { Calendar1, ChevronRight, Edit2, Home, User2, Eye } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
 import type { ArticleJoinedUser } from "@/lib/data/articles";
+
+import { incrementPageview } from "@/app/actions/pageviews";
+import { useEffect, useState } from "react";
 
 /* type Article = {
   id: string;
@@ -28,6 +31,18 @@ export function ArticleViewer({
   article,
   canEdit = false,
 }: ArticleViewerProps) {
+  // counting article visits with redis
+  const [localPageViews, setLocalPageViews] = useState(0);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: for our use only on mounting is ok
+  useEffect(() => {
+    async function fetchPageview() {
+      const newCount = await incrementPageview(article.id);
+      setLocalPageViews(newCount ?? null);
+    }
+    fetchPageview();
+  }, []);
+
   function formatDate(dateString: string) {
     const date = new Date(dateString);
 
@@ -38,7 +53,7 @@ export function ArticleViewer({
     });
   }
 
-  console.log({ article });
+  // console.log({ article });
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -71,6 +86,10 @@ export function ArticleViewer({
               <span>{formatDate(article.createdAt)}</span>
             </div>
             <Badge variant={"secondary"}>Article</Badge>
+            <div className="ml-3 flex items-center text-sm text-muted-foreground">
+              <Eye className="h-4 w-4 mr-1" />
+              <span>{localPageViews ? localPageViews : "-"}</span>
+            </div>
           </div>
         </div>
 

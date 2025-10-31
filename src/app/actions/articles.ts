@@ -10,6 +10,11 @@ import { stackServerApp } from "@/stack/server";
 //
 import { authorizeUserToEditArticle } from "@/db/authz";
 
+import redis from "@/cache"; // to clear redis db at the end of article creation
+// because when we get all articles on the main page we are also
+// serving articles from redis and we ned to make sure
+// new article is included in result
+
 // Server action to handle uploads (stub)
 
 // TODO: replace placeholder with real database operations when ready
@@ -44,6 +49,8 @@ export async function createArticle(data: CreateArticleInput) {
     authorId: user.id,
     imageUrl: data.imageUrl ?? undefined,
   });
+
+  redis.del("articles:all");
 
   return { success: true, message: "Article create logged (stub)" };
 }
